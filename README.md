@@ -20,7 +20,7 @@ The dictionary is defined as a single 'symbols.aff' file which defines metadata 
 
 Each language and scope is defined via a wordlist using the following naming convention:
 
-<language>_<scope>.dic
+   *language*_*scope*.dic
 The following languages are currently defined
 
 * c
