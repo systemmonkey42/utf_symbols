@@ -1,0 +1,10 @@
+SET utf-8
+NAME Common Programming Dictionary containing many known application programming words and type names
+VERSION 0.0.1
+HOME https://www.github.com/systemmonkey42/utf_symbols
+AUTHOR David le Blanc < systemmonkey42 at ncc1701 dot serveftp dot net >
+COPYRIGHT LGLP
+
+FOL	_
+LOW _
+UPP _
