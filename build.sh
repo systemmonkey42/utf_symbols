@@ -1,13 +1,28 @@
 #!/bin/bash -x
 
-read -r count < <(cat ./*.dic | wc -l)
+while getopts ":f:" opt; do
+	case "${opt}" in
+		f)
+			filter="${OPTARG}"
+			;;
+	esac
+done
 
-{
-	echo "$count"
-	cat ./*.dic
-} | sed -e '/^[A-Z][^A-Z]*$/s/.*/\L&/' -e '/^[^a-z]*$/s/.*/\L&/' | sort -u > "spell/symbols.dic"
+if [ -n "${filter}" ]; then
+	if sed -e '/^[A-Z][^A-Z]*$/s/.*/\L&/' -e '/^[^a-z]*$/s/.*/\L&/' < "${filter}" | sort -u > "${filter}.new" ; then
+		mv "${filter}.new" "${filter}"
+	fi
+	/bin/rm -f "${filter}.new"
+else
+	read -r count < <(cat ./*.dic | wc -l)
 
-(
-	cd spell &&
-		vim --cmd "mkspell! en symbols" --cmd q
-)
+	{
+		echo "$count"
+		cat ./*.dic
+	} | sed -e '/^[A-Z][^A-Z]*$/s/.*/\L&/' -e '/^[^a-z]*$/s/.*/\L&/' | sort -u > "spell/symbols.dic"
+
+	(
+		cd spell &&
+			vim --cmd "mkspell! en symbols" --cmd q
+	)
+fi
