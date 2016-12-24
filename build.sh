@@ -23,6 +23,6 @@ else
 
 	(
 		cd spell &&
-			vim --cmd "mkspell! en symbols" --cmd q
+			vim --cmd "mkspell! en.utf-8.add.spl symbols" --cmd q
 	)
 fi
